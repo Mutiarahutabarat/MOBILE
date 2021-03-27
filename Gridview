@@ -1,0 +1,243 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    title: 'Raouting Navigation',
+    initialRoute: '/',
+    routes: {
+      '/': (context) => HalamanPertama(),
+      HalamanKedua.routeName: (context) => HalamanKedua(),
+      HalamanKetiga.routeName: (context) => HalamanKetiga(),
+      HalamanKeEmpat.routeName: (context) => HalamanKeEmpat(),
+    },
+  ));
+}
+
+class HalamanPertama extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blueAccent,
+        title: Text("MENU UTAMA", style: new TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),),
+      ),
+      body: Center(
+        child: ListView(
+          children: <Widget>[
+            new Text('UTS Pemrograman Mobile 2\n',
+                style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.indigo)),
+            RaisedButton(
+              child: Text('Biodata'),
+              onPressed: () {
+                Navigator.pushNamed(context, HalamanKedua.routeName);
+              },
+            ),
+            RaisedButton(
+              child: Text('Kampus'),
+              onPressed: () {
+                Navigator.pushNamed(context, HalamanKetiga.routeName);
+              },
+            ),
+            RaisedButton(
+              child: Text('Gridview MEDSOS'),
+              onPressed: () {
+                Navigator.pushNamed(context, HalamanKeEmpat.routeName);
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class HalamanKedua extends StatelessWidget {
+  static const String routeName = '/halamanKedua';
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blueAccent,
+        title: Text("Biodata "),
+      ),
+      body: new Column(
+        children: <Widget>[
+          const Divider(
+            height: 1.0,
+          ),
+          new Text('DATA MAHASISWA',
+              style: TextStyle(fontSize: 32,)),
+          new ListTile(
+            leading: const Icon(Icons.person),
+            title: const Text('Mutiara Hutabarat'),
+            subtitle: const Text('Nama Mahasiswa'),
+          ),
+          new ListTile(
+            leading: const Icon(Icons.person_pin),
+            title: const Text('2018020483'),
+            subtitle: const Text('Nirm'),
+          ),
+          new ListTile(
+            leading: const Icon(Icons.label),
+            title: const Text('Sistem Informasi / 5 SIA 1'),
+            subtitle: const Text('Jurusan / Kelas'),
+          ),
+          new ListTile(
+            leading: const Icon(Icons.email),
+            title: const Text('mutiarahutabarat20@gmail.com'),
+            subtitle: const Text('Email'),
+          ),
+          new ListTile(
+            leading: const Icon(Icons.house),
+            title: const Text('Jl.Karya April, Medan Johor'),
+            subtitle: const Text('Alamat rumah'),
+          ),
+          new ListTile(
+            leading: const Icon(Icons.school),
+            title: const Text('STMIK Triguna Dharma'),
+            subtitle: const Text('Sekolah'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class HalamanKetiga extends StatelessWidget {
+  static const String routeName = '/halamanKetiga';
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blueAccent,
+        title: Text("kampus"),
+      ),
+      body: Center(
+        child: ListView(
+          children: <Widget>[
+             Image.network("https://www.trigunadharma.ac.id/themes/home/images/kampus2.png?v=1524289544"),
+            new ListTile(
+              leading: const Icon(Icons.account_balance_outlined),
+              title: const Text('STMIK TRIGUNA DHARMA MEDAN'),
+              subtitle: const Text('Jl.Karya April Medan Johor'),
+            ),
+            RaisedButton(
+              child: Text('Kembali'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+class HalamanKeEmpat extends StatelessWidget {
+  static const String routeName = '/halamanKeEmpat';
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.purple[500],
+          title: Text("GridView MEDSOS"),
+        ),
+        body: GridView.count(
+          crossAxisCount: 2,
+          mainAxisSpacing: 20.0,
+          padding: EdgeInsets.only(top: 50),
+          children: <Widget>[
+            Column(
+              children: <Widget>[
+                Image(
+                  width: 120.0,
+                  image: NetworkImage(
+                      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Instagram-Icon.png/480px-Instagram-Icon.png"),
+                ),
+                Text("Instagram",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.0,
+                        color: Colors.blue))
+              ],
+            ),
+            Column(
+              children: <Widget>[
+                Image(
+                  width: 120.0,
+                  image: NetworkImage(
+                      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Facebook_icon.svg/1200px-Facebook_icon.svg.png"),
+                ),
+                Text("Facebook",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.0,
+                        color: Colors.blue))
+              ],
+            ),
+            Column(
+              children: <Widget>[
+                Image(
+                  width: 120.0,
+                  image: NetworkImage(
+                      "https://cdn3.iconfinder.com/data/icons/cute-flat-social-media-icons-3/512/whatsapp.png"),
+                ),
+                Text("WhatsApp",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.0,
+                        color: Colors.blue))
+              ],
+            ),
+            Column(
+              children: <Widget>[
+                Image(
+                  width: 120.0,
+                  image: NetworkImage(
+                      "https://cdn3.iconfinder.com/data/icons/social-media-chamfered-corner/154/telegram-512.png"),
+                ),
+                Text("Telegram",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.0,
+                        color: Colors.blue))
+              ],
+            ),
+            Column(
+              children: <Widget>[
+                Image(
+                  width: 120.0,
+                  image: NetworkImage(
+                      "https://image.flaticon.com/icons/png/512/281/281769.png"),
+                ),
+                Text("Gmail",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.0,
+                        color: Colors.blue))
+              ],
+            ),
+            Column(
+              children: <Widget>[
+                Image(
+                  width: 120.0,
+                  image: NetworkImage(
+                      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/800px-YouTube_full-color_icon_%282017%29.svg.png"),
+                ),
+                Text("Youtobe",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.0,
+                        color: Colors.blue))
+              ],
+            ),
+          ],
+        ));
+  }
+}
